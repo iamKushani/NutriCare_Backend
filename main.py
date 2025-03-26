@@ -34,6 +34,33 @@ class Message(BaseModel):
 
 messages = []
 
+@app.post("/send-and-receive-message/")
+async def send_and_receive_message(message: Message):
+    messages.append(message)
+
+    elements = message.text.split(',')
+
+    if len(elements) != 7:
+        return {"message": "Received text does not contain 7 elements separated by a comma"}
+
+    gender, bmi, b_sugar, b_pressure, b_cholestrol, activity_level, food_preferences = map(
+        str.strip, elements)
+
+    # Run the Python script and capture its output
+    try:
+        result = subprocess.check_output(
+            ['python', 'FoodReco.py', gender, bmi, b_sugar, b_pressure,
+                b_cholestrol, activity_level, food_preferences],
+            text=True, stderr=subprocess.STDOUT
+        )
+
+        # Return the result to React
+        return {"message": result}
+    except subprocess.CalledProcessError as e:
+        return {"message": f"Script failed with error: {e.returncode}\n{e.output}"}
+
+
+
 class Message(BaseModel):
     user: dict
 
