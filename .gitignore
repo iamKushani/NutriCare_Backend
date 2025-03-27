@@ -1,0 +1,25 @@
+# Python-specific ignores
+_pycache_/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+
+# Data directories (if they contain generated or sensitive data)
+feedback_data/
+
+# Environment variables file (if you use one)
+.env
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# macOS-specific files
+.DS_Store
+
+# Logs and temporary files
+*.log
+*.tmp

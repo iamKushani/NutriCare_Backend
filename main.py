@@ -65,3 +65,20 @@ class Message(BaseModel):
     user: dict
 
 
+@app2.post("/send-message/")
+def send_message(message: Message):
+    try:
+        allergies = message.user.get("text", "")
+
+        # Run the Python script and capture its output
+        result = subprocess.check_output(
+            ['python', 'FoodFilter.py', allergies],
+            text=True, stderr=subprocess.STDOUT
+        )
+
+        # Return the result to the client
+        return {"message": result}
+
+    except Exception as e:
+        print(f"Error in send_message endpoint: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
