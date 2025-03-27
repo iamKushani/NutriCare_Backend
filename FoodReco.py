@@ -27,3 +27,10 @@ df_filtered = df.loc[(df['Gender'] == gender) &
                      (df['Cholestrol'] == b_cholestrol) &
                      (df['Activity'] == activity_level) &
                      (df['Preferences'] == food_preferences)]
+
+# Output category ID
+if len(df_filtered) > 0:
+    category_id = df_filtered.iloc[0]['Category ID']
+    print(f"You Belong to the  {category_id}")
+else:
+    print("No matching category found.")
