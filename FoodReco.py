@@ -34,3 +34,17 @@ if len(df_filtered) > 0:
     print(f"You Belong to the  {category_id}")
 else:
     print("No matching category found.")
+
+# Check if category_id is available
+if 'category_id' in locals():
+
+    def get_recommendations_for_category(category_id):
+        matching_rows = df[df['Category ID'] == category_id]
+        if not matching_rows.empty:
+            recommendations = matching_rows['recommendation']
+        for recommendation in recommendations:
+            print(recommendation)
+
+    get_recommendations_for_category(category_id)
+else:
+    print("Unable to get recommendations.")
