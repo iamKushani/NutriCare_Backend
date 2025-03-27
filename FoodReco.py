@@ -12,3 +12,9 @@ gender, bmi, b_sugar, b_pressure, b_cholestrol, activity_level, food_preferences
 # Load data from Excel file
 df = pd.read_excel('D:/nutricarenew/src/KB.xlsx')
 
+def get_column_values(column_name):
+    if column_name not in df.columns:
+        return "Error: Column not found in dataframe"
+    else:
+        column_values = list(df[column_name])
+        return column_values
