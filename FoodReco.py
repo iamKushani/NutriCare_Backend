@@ -18,3 +18,12 @@ def get_column_values(column_name):
     else:
         column_values = list(df[column_name])
         return column_values
+    
+# Filter dataframe based on user input
+df_filtered = df.loc[(df['Gender'] == gender) &
+                     (df['bmi'] == bmi) &
+                     (df['Sugar'] == b_sugar) &
+                     (df['Pressure'] == b_pressure) &
+                     (df['Cholestrol'] == b_cholestrol) &
+                     (df['Activity'] == activity_level) &
+                     (df['Preferences'] == food_preferences)]
